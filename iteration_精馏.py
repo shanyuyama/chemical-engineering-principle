@@ -20,7 +20,7 @@ def iterate_equations_liquid(a, b, alpha, y1, x_F, y_F, max_iter=10, tol=1e-3):
         # 检查是否收敛
         x_new = y / (alpha - (alpha - 1) * y)
         if abs(x_new - x_F) > delta_x:
-            print(f"在第 {i+1} 级进料")
+            print(f"在第 {i+2} 级进料")
             return x, i
     print(f"达到最大迭代次数 {max_iter}，未收敛")
     return 0
@@ -45,7 +45,7 @@ def iterate_equations_vapor(a, b, alpha, y1, x_F, y_F, max_iter=10, tol=1e-3):
         print(f"y{i+2} = {y}")
         # 检查是否收敛
         if abs(y - y_F) < tol:
-            print(f"在第 {i+2} 级进料")
+            print(f"在第 {i+1} 级进料")
             x = y / (alpha - (alpha - 1) * y)
             return x, i
     print(f"达到最大迭代次数 {max_iter}，未收敛")
@@ -76,10 +76,10 @@ def iterate_equations_2(a, b, alpha, x, x_target, i, max_iter=10, tol=1e-4):
     print(f"达到最大迭代次数 {max_iter}，未收敛")
     return 0
 # 示例参数
-a, b = 0.375, 0.563  # 精馏操作线
+a, b = 0.667, 0.333*0.98  # 精馏操作线
 alpha = 4    # 挥发性系数
-y1 = 0.9     # y1 塔顶的气相摩尔分数
-x_F = 0.43    # 泡点进料的 x 值
+y1 = 0.98     # y1 塔顶的气相摩尔分数
+x_F = 0.263    # 泡点进料的 x 值
 y_F = 0.43  # 饱和蒸汽进料的 y 值
 
 # 调用函数进行迭代
